@@ -1,0 +1,455 @@
+/* =========================================================
+   CÍRCULO RAINHA — PRE-SELL PAGE
+   Design: Minimalista · Luxuoso · Autoridade
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --gold:        #C9A96E;
+  --gold-light:  #E2C89A;
+  --gold-muted:  #8A6F4A;
+  --ivory:       #F5F0E8;
+  --ivory-dim:   #BDB8AE;
+  --obsidian:    #0A0907;
+  --deep:        #10100E;
+  --surface:     #161411;
+  --surface-2:   #1E1B17;
+  --border:      rgba(201, 169, 110, 0.18);
+  --border-hover: rgba(201, 169, 110, 0.45);
+  --glow:        rgba(201, 169, 110, 0.12);
+  --glow-strong: rgba(201, 169, 110, 0.22);
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --transition:  cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--obsidian);
+  color: var(--ivory);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ── Atmospheric Background ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201, 169, 110, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(201, 169, 110, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 0% 60%, rgba(90, 50, 20, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Subtle grain texture */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* ── Wrapper ── */
+.wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 640px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 32px;
+  gap: 0;
+}
+
+/* ── Crown Emblem ── */
+.emblem {
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeInDown 1s var(--transition) 0.2s forwards;
+}
+
+.emblem-ring {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(201,169,110,0.05) 0%, transparent 70%);
+  position: relative;
+}
+
+.emblem-ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,169,110,0.07);
+}
+
+.emblem-icon {
+  font-size: 28px;
+  line-height: 1;
+  filter: drop-shadow(0 0 8px rgba(201,169,110,0.4));
+}
+
+/* ── Logo / Wordmark ── */
+.logo {
+  text-align: center;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeInDown 1s var(--transition) 0.4s forwards;
+}
+
+.logo-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold-muted);
+  margin-bottom: 8px;
+}
+
+.logo-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 38px);
+  font-weight: 400;
+  color: var(--ivory);
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+}
+
+.logo-title em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.logo-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  justify-content: center;
+}
+
+.logo-divider-line {
+  flex: 1;
+  max-width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-muted), transparent);
+}
+
+.logo-divider-diamond {
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+/* ── Headline Block ── */
+.headline-block {
+  text-align: center;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeInUp 1s var(--transition) 0.6s forwards;
+}
+
+.headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 4.5vw, 32px);
+  font-weight: 600;
+  color: var(--ivory);
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.headline em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.subheadline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(15px, 2.5vw, 18px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ivory-dim);
+  line-height: 1.65;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ── Separator ── */
+.separator {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 36px 0;
+  opacity: 0;
+  animation: fadeIn 1s var(--transition) 0.8s forwards;
+  width: 100%;
+}
+
+.sep-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+.sep-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-muted);
+  white-space: nowrap;
+}
+
+/* ── Access Buttons ── */
+.access-grid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  opacity: 0;
+  animation: fadeInUp 1s var(--transition) 1s forwards;
+}
+
+.btn-access {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 22px 28px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s var(--transition),
+              background 0.4s var(--transition),
+              transform 0.3s var(--transition),
+              box-shadow 0.4s var(--transition);
+}
+
+.btn-access::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,169,110,0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s var(--transition);
+}
+
+.btn-access:hover::before {
+  opacity: 1;
+}
+
+.btn-access:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-2);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 20px var(--glow);
+}
+
+.btn-access:active {
+  transform: translateY(0px);
+}
+
+/* Primary — Queens */
+.btn-access--primary {
+  border-color: rgba(201,169,110,0.3);
+  background: linear-gradient(135deg, var(--surface-2) 0%, #1a1713 100%);
+}
+
+.btn-access--primary:hover {
+  border-color: var(--gold);
+  box-shadow: 0 12px 48px rgba(0,0,0,0.5), 0 0 28px rgba(201,169,110,0.18);
+}
+
+/* Secondary — Gentlemen */
+.btn-access--secondary {
+  background: var(--surface);
+}
+
+.btn-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.btn-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-muted);
+}
+
+.btn-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(17px, 3vw, 21px);
+  font-weight: 600;
+  color: var(--ivory);
+  letter-spacing: 0.02em;
+}
+
+.btn-access--primary .btn-title {
+  color: var(--gold-light);
+}
+
+.btn-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s var(--transition);
+}
+
+.btn-access--primary .btn-arrow {
+  border-color: rgba(201,169,110,0.3);
+}
+
+.btn-access:hover .btn-arrow {
+  border-color: var(--gold);
+  background: rgba(201,169,110,0.08);
+  transform: translateX(3px);
+}
+
+.btn-arrow svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--gold-muted);
+  transition: stroke 0.3s;
+}
+
+.btn-access:hover .btn-arrow svg {
+  stroke: var(--gold);
+}
+
+/* ── Trust Badges ── */
+.trust-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 40px;
+  opacity: 0;
+  animation: fadeIn 1.2s var(--transition) 1.3s forwards;
+  flex-wrap: wrap;
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-muted);
+}
+
+.trust-badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-muted);
+  opacity: 0.6;
+}
+
+/* ── Footer Note ── */
+.footer-note {
+  margin-top: 48px;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(189, 184, 174, 0.4);
+  opacity: 0;
+  animation: fadeIn 1.2s var(--transition) 1.5s forwards;
+  line-height: 1.7;
+}
+
+/* ── Animations ── */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Pulse on emblem ring */
+@keyframes pulseRing {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,169,110,0.15); }
+  50%       { box-shadow: 0 0 0 8px rgba(201,169,110,0); }
+}
+
+.emblem-ring {
+  animation: pulseRing 3.5s ease-in-out infinite;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 48px 20px;
+  }
+
+  .trust-row {
+    gap: 16px;
+  }
+
+  .btn-access {
+    padding: 20px 22px;
+  }
+}
