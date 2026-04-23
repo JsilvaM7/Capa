@@ -241,6 +241,16 @@ body::after {
   gap: 16px;
 }
 
+.access-label {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--gold-muted);
+  letter-spacing: 0.15em;
+  margin-bottom: -4px;
+}
+
 .btn-access {
   display: flex;
   align-items: center;
