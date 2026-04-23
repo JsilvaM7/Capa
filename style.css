@@ -89,13 +89,13 @@ body::after {
   justify-content: center;
   padding: 60px 32px;
   gap: 0;
+  opacity: 0;
+  animation: fadeIn 0.7s ease-out forwards;
 }
 
 /* ── Crown Emblem ── */
 .emblem {
   margin-bottom: 32px;
-  opacity: 0;
-  animation: fadeInDown 1s var(--transition) 0.2s forwards;
 }
 
 .emblem-ring {
@@ -129,8 +129,6 @@ body::after {
 .logo {
   text-align: center;
   margin-bottom: 48px;
-  opacity: 0;
-  animation: fadeInDown 1s var(--transition) 0.4s forwards;
 }
 
 .logo-eyebrow {
@@ -183,8 +181,6 @@ body::after {
 .headline-block {
   text-align: center;
   margin-bottom: 16px;
-  opacity: 0;
-  animation: fadeInUp 1s var(--transition) 0.6s forwards;
 }
 
 .headline {
@@ -218,8 +214,6 @@ body::after {
   align-items: center;
   gap: 16px;
   margin: 36px 0;
-  opacity: 0;
-  animation: fadeIn 1s var(--transition) 0.8s forwards;
   width: 100%;
 }
 
@@ -245,8 +239,6 @@ body::after {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  opacity: 0;
-  animation: fadeInUp 1s var(--transition) 1s forwards;
 }
 
 .btn-access {
@@ -376,8 +368,6 @@ body::after {
   justify-content: center;
   gap: 28px;
   margin-top: 40px;
-  opacity: 0;
-  animation: fadeIn 1.2s var(--transition) 1.3s forwards;
   flex-wrap: wrap;
 }
 
@@ -409,22 +399,10 @@ body::after {
   font-size: 13px;
   font-style: italic;
   color: var(--gold-muted);
-  opacity: 0;
-  animation: fadeIn 1.2s var(--transition) 1.5s forwards;
   line-height: 1.7;
 }
 
 /* ── Animations ── */
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-18px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
