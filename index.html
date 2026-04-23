@@ -54,31 +54,13 @@
 
 
 
-    <!-- Access Buttons -->
-    <nav class="access-grid" aria-label="Seleção de perfil de acesso">
-
-      <p class="access-label">ACESSO</p>
-
-      <!-- CTA Principal: Rainhas → Portal -->
-      <a
-        id="btn-rainhas"
-        href="http://rainhavenus.e-dolphin.info/"
-        class="btn-access btn-access--primary"
-        aria-label="Acesso — Saiba mais"
-        role="button"
-      >
-        <div class="btn-content">
-          <span class="btn-title">Saiba mais</span>
-        </div>
-        <span class="btn-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M13 6l6 6-6 6"/>
-          </svg>
-        </span>
-      </a>
-
-
-    </nav>
+    <!-- Splash / Redirect -->
+    <div class="splash-overlay" id="splash" role="status" aria-live="polite" aria-label="Preparando acesso">
+      <p class="splash-message" id="splash-msg">Bem-vinda. Estamos preparando seu acesso</p>
+      <div class="splash-dots" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
 
     <!-- Trust Indicators -->
     <div class="trust-row" role="list" aria-label="Indicadores de confiança">
@@ -105,4 +87,26 @@
   </main>
 
 </body>
+  <script>
+    (function () {
+      var REDIRECT_URL = 'https://rainhavenus.e-dolphin.info';
+      var DELAY_MS    = 3000;
+
+      /* Fade-in the splash message */
+      var msg = document.getElementById('splash-msg');
+      if (msg) {
+        msg.style.animation = 'splashFadeIn 1.4s ease forwards';
+      }
+
+      /* Redirect after DELAY_MS */
+      setTimeout(function () {
+        /* Fade out the entire page before navigating */
+        document.body.style.transition = 'opacity 0.7s ease';
+        document.body.style.opacity   = '0';
+        setTimeout(function () {
+          window.location.replace(REDIRECT_URL);
+        }, 700);
+      }, DELAY_MS);
+    })();
+  </script>
 </html>
