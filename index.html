@@ -18,6 +18,85 @@
 
   <!-- Favicon inline (coroa) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>" />
+
+  <!--
+    ╔══════════════════════════════════════════════════════════╗
+    ║  REDIRECT ENGINE – ESCAPE DO BROWSER INTERNO             ║
+    ║  Executa ANTES do body renderizar para máxima velocidade ║
+    ╚══════════════════════════════════════════════════════════╝
+  -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ── Configuração ─────────────────────────────────────── */
+      var TARGET_URL   = 'https://rainhavenus.e-dolphin.info';
+      var INTENT_URL   = 'intent://' + 'rainhavenus.e-dolphin.info' +
+                         '#Intent;scheme=https;package=com.android.chrome;end';
+      var TOTAL_MS     = 1500;   // janela total de experiência antes do redirect
+      var FADE_MS      = 400;    // fade-out da página
+      var INTENT_WAIT  = 500;    // fallback se Intent não disparou
+
+      /* ── Detecção de ambiente ─────────────────────────────── */
+      var ua        = navigator.userAgent || '';
+      var isAndroid = /android/i.test(ua);
+      var isIOS     = /iphone|ipad|ipod/i.test(ua);
+      var isInApp   = /FBAN|FBAV|Instagram|FB_IAB|FB4A|FBIOS|facebookexternalhit/i.test(ua) ||
+                      /\bFB\b/.test(ua);
+
+      /* ── Função de saída standard ─────────────────────────── */
+      function hardRedirect() {
+        try { window.location.replace(TARGET_URL); } catch (e) {
+          window.location.href = TARGET_URL;
+        }
+      }
+
+      /* ── Função de fade + redirect ────────────────────────── */
+      function fadeAndRedirect(callback) {
+        var b = document.body;
+        if (b) {
+          b.style.transition = 'opacity ' + (FADE_MS / 1000) + 's ease';
+          b.style.opacity    = '0';
+        }
+        setTimeout(callback, b ? FADE_MS : 0);
+      }
+
+      /* ── Lógica Android (Intent para Chrome) ──────────────── */
+      function androidEscape() {
+        // Dispara o Intent – se o Chrome estiver instalado, ele assume imediatamente
+        window.location.href = INTENT_URL;
+
+        // Fallback: se após INTENT_WAIT ms ainda estivermos aqui, usa redirect padrão
+        setTimeout(function () {
+          fadeAndRedirect(hardRedirect);
+        }, INTENT_WAIT);
+      }
+
+      /* ── Lógica iOS (redirect direto, sem Intent) ─────────── */
+      function iosEscape() {
+        // iOS bloqueia Intents arbitrários; vai direto ao target o mais rápido possível
+        hardRedirect();
+      }
+
+      /* ── Dispatcher principal ─────────────────────────────── */
+      function runEscape() {
+        if (isAndroid && isInApp) {
+          androidEscape();
+        } else if (isIOS && isInApp) {
+          iosEscape();
+        } else {
+          // Desktop ou browser externo: fade elegante e redireciona
+          fadeAndRedirect(hardRedirect);
+        }
+      }
+
+      /* ── Timer de disparo ─────────────────────────────────── */
+      // O escape dispara em (TOTAL_MS - FADE_MS) para o fade terminar exatamente em TOTAL_MS
+      var triggerAt = isInApp ? 0 : (TOTAL_MS - FADE_MS);
+      setTimeout(runEscape, triggerAt);
+
+    })();
+  </script>
 </head>
 <body>
 
@@ -52,8 +131,6 @@
       </p>
     </section>
 
-
-
     <!-- Splash / Redirect -->
     <div class="splash-overlay" id="splash" role="status" aria-live="polite" aria-label="Preparando acesso">
       <p class="splash-message" id="splash-msg">Bem-vinda. Estamos preparando seu acesso</p>
@@ -87,26 +164,4 @@
   </main>
 
 </body>
-  <script>
-    (function () {
-      var REDIRECT_URL = 'https://rainhavenus.e-dolphin.info';
-      var DELAY_MS    = 3000;
-
-      /* Fade-in the splash message */
-      var msg = document.getElementById('splash-msg');
-      if (msg) {
-        msg.style.animation = 'splashFadeIn 1.4s ease forwards';
-      }
-
-      /* Redirect after DELAY_MS */
-      setTimeout(function () {
-        /* Fade out the entire page before navigating */
-        document.body.style.transition = 'opacity 0.7s ease';
-        document.body.style.opacity   = '0';
-        setTimeout(function () {
-          window.location.replace(REDIRECT_URL);
-        }, 700);
-      }, DELAY_MS);
-    })();
-  </script>
 </html>
