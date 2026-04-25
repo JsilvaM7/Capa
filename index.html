@@ -106,26 +106,34 @@
 
   <main class="wrapper" role="main">
 
-    <!-- Crown Emblem -->
-    <div class="emblem" aria-hidden="true">
-      <div class="emblem-ring">
-        <span class="emblem-icon">♛</span>
+    <!-- Topo: Emblem + Wordmark -->
+    <div class="top-block">
+      <div class="emblem" aria-hidden="true">
+        <div class="emblem-ring">
+          <span class="emblem-icon">♕</span>
+        </div>
       </div>
+      <header class="logo">
+        <p class="logo-eyebrow">Portal Exclusivo</p>
+        <h1 class="logo-title">Círculo <em>Rainha</em></h1>
+        <div class="logo-divider" aria-hidden="true">
+          <span class="logo-divider-line"></span>
+          <span class="logo-divider-diamond"></span>
+          <span class="logo-divider-line"></span>
+        </div>
+      </header>
     </div>
 
-    <!-- Wordmark -->
-    <header class="logo">
-      <p class="logo-eyebrow">Portal Exclusivo</p>
-      <h1 class="logo-title">Círculo <em>Rainha</em></h1>
-      <div class="logo-divider" aria-hidden="true">
-        <span class="logo-divider-line"></span>
-        <span class="logo-divider-diamond"></span>
-        <span class="logo-divider-line"></span>
-      </div>
-    </header>
+    <!--
+      Espaçador estratégico:
+      Empurra a frase para baixo da região onde o popup do Instagram aparece.
+      O popup cobre aprox. 35%-65% da altura da tela.
+      A frase precisa ficar abaixo de 65% para ser legida.
+    -->
+    <div class="popup-spacer" aria-hidden="true"></div>
 
-    <!-- Headline -->
-    <section class="headline-block" aria-labelledby="main-headline">
+    <!-- Frase de Impacto — aparece na metade inferior, abaixo do popup -->
+    <section class="headline-block headline-block--bottom" aria-labelledby="main-headline">
       <h2 class="headline" id="main-headline">
         Você está prestes a enxergar <em>o manipulador</em>
       </h2>
@@ -133,7 +141,7 @@
 
     <!-- Splash / Redirect -->
     <div class="splash-overlay" id="splash" role="status" aria-live="polite" aria-label="Validando acesso">
-      <p class="splash-message" id="splash-msg">Validando acesso... Preparando sua entrada</p>
+      <p class="splash-message" id="splash-msg">Validando acesso...</p>
       <div class="splash-dots" aria-hidden="true">
         <span></span><span></span><span></span>
       </div>
@@ -154,12 +162,6 @@
         <span>Curadoria Exclusiva</span>
       </div>
     </div>
-
-    <!-- Footer Note -->
-    <p class="footer-note">
-      Este ambiente é reservado a mulheres comprometidas<br />
-      com sua clareza, sua força e seu posicionamento.
-    </p>
 
   </main>
 
